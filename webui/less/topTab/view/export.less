@@ -1,0 +1,39 @@
+.btn-group-vertical {
+    vertical-align: middle;
+    margin: 5px;
+
+    .export, .export-caption {
+        width: 120px;
+        margin: 0;
+        padding: 0;
+        border: none!important;
+        border-radius: 0!important;
+
+        &:hover {
+            background-color: @tool-hover;
+        }
+
+        &:active {
+            background-color: @tool-active;
+        }
+
+        &.active {
+            box-shadow: none;
+            background-color: @tool-hover;
+        }
+    }
+
+    .export {
+        height: 25px;
+        background: url(images/icons.png) no-repeat 0 -645px;
+        background-position-x: 50%;
+    }
+
+    .export-caption {
+        height: 20px;
+
+        .caption {
+            font-size: 12px;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "mindmap.language": "请选择语言",
+  "mindmap.uploadUrl": "请输入上传路径",
+  "mindmap.imageDpi": "导出图片dpi分辨率，越高越清晰，导出速度越慢",
+  "mindmap.imageBackgroundColor": "导出图片背景色",
+  "mindmap.markdownDescription": "\n\n 自定义图片上传接口，不填默认使用本地文件\n\n 例如http:\/\/www.api.cn\/upload \n\n 接口返回参考：\n\n ```js  \n{\n    \"errno\": \"0\",\n    \"msg\": \"ok\",\n    \"data\":  {  \"url\": \"http://www.api.cn/public/xxx.png\"   } \n}\n ``` "
+}

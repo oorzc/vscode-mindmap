@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "target": "ES6",
+        "module": "commonjs",
+        "lib": [
+            "ES6",
+            "ES2020"
+        ],
+        "strict": true,
+        "esModuleInterop": true,
+        "declarationMap": true,
+        "sourceMap": false,
+        "declaration": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declarationDir": "types",
+        "outDir": "lib",
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        ".vscode-test"
+    ],
+    "include": [
+        "src"
+    ]
+}

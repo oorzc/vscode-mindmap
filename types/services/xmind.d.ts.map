@@ -1,0 +1,1 @@
+{"version":3,"file":"xmind.d.ts","sourceRoot":"","sources":["../../src/services/xmind.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAa,MAAM,UAAU,CAAC;AAGjD,qBAAa,KAAK;IAChB,OAAO,CAAC,QAAQ,CAAS;gBACb,QAAQ,EAAE,MAAM;IAI5B,OAAO;CAgCR"}

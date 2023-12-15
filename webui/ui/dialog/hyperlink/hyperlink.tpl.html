@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ 'title' | lang: 'ui/dialog/hyperlink'}}</h3>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group" id="link-url-wrap" ng-class="{true: 'has-success', false: 'has-error'}[urlPassed]">
+            <label for="link-url">{{ 'linkurl' | lang: 'ui/dialog/hyperlink'}}</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="url"
+                   ng-blur="urlPassed = R_URL.test(url)"
+                   ng-focus="this.value = url"
+                   ng-keydown="shortCut($event)"
+                   id="link-url"
+                   placeholder="{{ 'placeholder' | lang: 'ui/dialog/hyperlink'}}">
+        </div>
+        <div class="form-group" ng-class="{'has-success' : titlePassed}">
+            <label for="link-title">{{ 'linkhint' | lang: 'ui/dialog/hyperlink'}}</label>
+            <input type="text" class="form-control" ng-model="title" ng-blur="titlePassed = true" id="link-title" placeholder="{{ 'placeholder2' | lang: 'ui/dialog/hyperlink'}}">
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">{{ 'ok' | lang: 'ui/dialog/hyperlink'}}</button>
+    <button class="btn btn-warning" ng-click="cancel()">{{ 'cancel' | lang: 'ui/dialog/hyperlink'}}</button>
+</div>
