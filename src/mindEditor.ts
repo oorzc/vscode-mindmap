@@ -73,8 +73,7 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
 
         let mindmapConfig: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration("MindMap")
         const uploadUrl = mindmapConfig.get<string>('uploadUrl', '');
-        const lang = mindmapConfig.get<string>('language', vscode.env.language);
-
+        const lang = mindmapConfig.get<string>('language') || vscode.env.language;
         //设置默认语言
         html = html.replace(/\$\{vscode_lang\}/g, lang);
         //设置上传地址

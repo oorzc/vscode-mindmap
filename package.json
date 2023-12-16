@@ -52,10 +52,9 @@
             "properties": {
                 "MindMap.language": {
                     "type": "string",
-                    "default": "zh-cn",
                     "enum": [
                         "zh-cn",
-                        "zh-hk",
+                        "zh-tw",
                         "en",
                         "de",
                         "es",
