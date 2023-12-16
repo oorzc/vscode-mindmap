@@ -1,10 +1,14 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import { selectFile, getRootUri } from "./util";
-const sharp = require("sharp");
+import { selectFile, getRootUri, changeSvgImg } from "./util";
 const xmindparser = require('./xmindparser');
 let parser = new xmindparser()
+
+const { Resvg, initWasm } = require('./wasm')
+const index_bg = fs.readFileSync(path.join(__dirname, '../webui/resvg-js/index_bg.wasm'))
+initWasm(index_bg)
+const fontPath = path.join(__dirname, '../webui/resvg-js/fonts/Alibaba_PuHuiTi_2.0_45_Light_45_Light.ttf')
 
 const matchableFileTypes: string[] = ['xmind', 'km', 'svg'];
 const viewType = 'vscode-mindmap.editor';
@@ -173,7 +177,6 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
 
                         break;
                     case 'export':
-                        console.log('export', message);
                         let filters: any = { 'All Files': ['*'] }
                         if (message.type == 'xmind') {
                             filters['Text Files'] = ['xmind']
@@ -186,7 +189,7 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
                         rootUri && vscode.window.showSaveDialog({
                             defaultUri: vscode.Uri.file(path.join(rootUri.fsPath, message.filename + '.' + message.type)), // 设置默认文件名
                             filters: filters
-                        }).then(uri => {
+                        }).then(async uri => {
                             if (uri) {
                                 // 处理用户选择的文件路径
                                 const filePath = uri.fsPath;
@@ -197,20 +200,60 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
                                         console.log("data", data)
                                     })
                                 } else if (message.type == 'png') {
-                                    // const sourceBuffer = base64ToBuffer(message.content);
-                                    const sourceBuffer = Buffer.from(message.content);
-                                    const imageDpi = mindmapConfig.get<number>('imageDpi', 200);
-                                    const imageBackgroundColor = mindmapConfig.get<string>('imageBackgroundColor', '#ffffff');
-                                    sharp(sourceBuffer, {
-                                        density: imageDpi // 设置像素为200
-                                    })
-                                        .png({ quality: 90 })
-                                        .flatten({ background: imageBackgroundColor })
-                                        .toFile(filePath, (err: any, info: any) => {
-                                            if (err) {
-                                                return;
-                                            }
-                                        });
+                                    let new_svg = await changeSvgImg(message.content)
+                                    if (new_svg) {
+                                        const imageBackgroundColor = mindmapConfig.get<string>('imageBackgroundColor', '#ffffff');
+                                        const imageScaleSize = mindmapConfig.get<number>('imageScaleSize', 2);
+
+                                        const sourceBuffer = fs.readFileSync(path.resolve(fontPath))
+                                        const opts = {
+                                            background: imageBackgroundColor,
+                                            fitTo: {
+                                                mode: 'zoom',
+                                                value: imageScaleSize,
+                                            },
+                                            font: {
+                                                fontBuffers: [sourceBuffer],
+                                                // fontFiles: [font], // Load custom fonts.
+                                                loadSystemFonts: false, // It will be faster to disable loading system fonts.
+                                                // defaultFontFamily: 'Source Han Serif CN Light',
+                                            },
+                                        }
+                                        const resvg = new Resvg(new_svg, opts)
+                                        const pngData = resvg.render()
+                                        const pngBuffer = pngData.asPng()
+                                        await fs.writeFileSync(filePath, pngBuffer)
+                                    }
+
+                                    // sharp强大 但有系统兼容问题暂不采用
+                                    // try {
+                                    //     const sharp = require("sharp");
+                                    //     let new_svg = await changeSvgImg(message.content)
+                                    //     if (new_svg) {
+                                    //         const sourceBuffer = Buffer.from(new_svg, 'utf-8');
+                                    //         const imageScaleSize = mindmapConfig.get<number>('imageScaleSize', 200);
+                                    //         const imageBackgroundColor = mindmapConfig.get<string>('imageBackgroundColor', '#ffffff');
+                                    //         sharp(sourceBuffer, {
+                                    //             density: imageScaleSize // 设置导出像素
+                                    //         })
+                                    //             .png({ quality: 90 })
+                                    //             .flatten({ background: imageBackgroundColor })
+                                    //             .toFile(filePath, (err: any, info: any) => {
+                                    //                 if (err) {
+                                    //                     return;
+                                    //                 }
+                                    //             });
+                                    //     } else {
+                                    //         vscode.window.showErrorMessage('export error!')
+                                    //     }
+                                    // } catch (error) {
+                                    //     //降级处理有的操作系统不支持sharp 则导出普通图片
+                                    // }
+                                } else if (message.type == 'json') {
+                                    //格式化json
+                                    fs.writeFileSync(filePath, JSON.stringify(JSON.parse(message.content), null, "\t"), 'utf-8')
+                                } else {
+                                    fs.writeFileSync(filePath, message.content, 'utf-8')
                                 }
                             }
                         });

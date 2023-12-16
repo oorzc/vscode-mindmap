@@ -7,3 +7,4 @@ webui/node_modules
 webui/bower_components
 testDir
 notebook-*.vsix
+install-*.js

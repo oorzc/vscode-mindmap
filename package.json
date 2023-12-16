@@ -93,12 +93,12 @@
                     "description": "%mindmap.uploadUrl%",
                     "markdownDescription": "%mindmap.markdownDescription%"
                 },
-                "MindMap.imageDpi": {
+                "MindMap.imageScaleSize": {
                     "type": "number",
-                    "minimum": 100,
-                    "maximum": 1000,
-                    "default": 200,
-                    "description": "%mindmap.imageDpi%"
+                    "minimum": 0.1,
+                    "maximum": 10,
+                    "default": 2,
+                    "description": "%mindmap.imageScaleSize%"
                 },
                 "MindMap.imageBackgroundColor": {
                     "type": "string",
@@ -109,24 +109,24 @@
         }
     },
     "scripts": {
-        "build": "pnpm run package && vsce package",
+        "build": "npm run package && vsce package",
         "compile": "tsc -watch -p ./",
         "watch": "webpack --watch --mode development",
         "package": "webpack --mode production --devtool hidden-source-map",
-        "pretest": "pnpm run compile && pnpm run lint",
+        "pretest": "npm run compile && npm run lint",
         "lint": "eslint src --ext ts",
-        "commit": "pnpm run package && git add . && git commit -m 'up'",
-        "major": "pnpm run commit && vsce publish major",
-        "minor": "pnpm run commit && vsce publish minor",
-        "patch": "pnpm run commit && vsce publish patch",
+        "commit": "npm run package && git add . && git commit -m 'up'",
+        "major": "npm run commit && vsce publish major",
+        "minor": "npm run commit && vsce publish minor",
+        "patch": "npm run commit && vsce publish patch",
         "web": "ovsx publish"
     },
     "dependencies": {
+        "@resvg/resvg-js": "^2.6.0",
         "base64-js": "^1.5.1",
         "jszip": "^3.6.0",
-        "node-fetch": "^2.7.0",
         "request": "^2.88.2",
-        "sharp": "^0.33.0",
+        "string-replace-async": "^3.0.2",
         "xmind": "^2.2.33",
         "xml-formatter": "^3.6.0",
         "xml-js": "^1.6.11"

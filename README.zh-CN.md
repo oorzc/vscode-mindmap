@@ -6,7 +6,7 @@
 
 1. 支持多国语言(简体中文,繁體中文,English,German,Spanish,French,Italian,Czech,Hungarian,Japanese,Korean,Polish,Portuguese,Russia)
 2. 支持直接打开km、xmind文档
-3. 支持导出高清图片（在插件设置中配置导出分辨率、背景色）
+3. 支持导出高清图片（在插件设置中配置导出图片缩放倍数、背景色）
 4. 支持导出km、xmind、markdown、svg、txt、json、png文件
 5. 支持导入km、xmind、markdown、txt、json文件
 6. 支持自定义上传图片接口，如果未填写则使用本地图片

@@ -1,7 +1,7 @@
 {
   "mindmap.language": "Please select language",
   "mindmap.uploadUrl": "Please enter the upload path",
-  "mindmap.imageDpi": "Export image dpi resolution, the higher the clearer, the slower the export speed",
+  "mindmap.imageScaleSize": "Export the picture size, enlarge by 2x by default",
   "mindmap.imageBackgroundColor": "Export image background color",
   "mindmap.markdownDescription": "\n\n Customize the image upload interface. If not filled in, local files will be used by default. \n\n For example http:\/\/www.api.cn\/upload \n\n Interface return reference: \n\n ```js  \n{\n    \"errno\": \"0\",\n    \"msg\": \"ok\",\n    \"data\":  {  \"url\": \"http://www.api.cn/public/xxx.png\"   } \n}\n ``` "
 }

@@ -7,7 +7,7 @@
 
 1. Multilingual support(简体中文,繁體中文,English,German,Spanish,French,Italian,Czech,Hungarian,Japanese,Korean,Polish,Portuguese,Russia)
 2. Directly open km, xmind documents
-3. Export high-resolution images (configure export resolution and background color in plugin settings)
+3. Support exporting high definition pictures (configure the export picture zoom factor and background color in the plug-in settings)
 4. Export km, xmind, markdown, svg, txt, json, png files
 5. Import km, xmind, markdown, txt, json files
 6. Customizable image upload interface (if not specified, local images will be used)

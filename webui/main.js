@@ -108,6 +108,10 @@ angular
 	});
 
 (function () {
+	$(document).on("click", ".nav-tabs a", function (event) {
+		event.preventDefault();
+	});
+
 	$(document).on("click", ".export", function (event) {
 		event.preventDefault();
 		var $this = $(this),
@@ -138,36 +142,12 @@ angular
 		}
 
 		editor.minder.exportData(exportType).then(function (content) {
-			// switch (exportType) {
-			//     case 'json':
-			//         console.log($.parseJSON(content));
-			//         break;
-			//     default:
-			//         console.log(content);
-			//         break;
-			// }
-			var blob = new Blob();
-			switch (exportType) {
-				case "png":
-					blob = dataURLtoBlob(content); //将base64编码转换为blob对象
-					break;
-				default:
-					blob = new Blob([content]);
-					break;
-			}
-			if (["xmind", "png"].indexOf(type) != -1) {
-				window.vscode.postMessage({
-					command: "export",
-					filename: $("#node_text1").text(),
-					type: type,
-					content,
-				});
-			} else {
-				var a = document.createElement("a"); //建立标签，模拟点击下载
-				a.download = $("#node_text1").text() + "." + type;
-				a.href = URL.createObjectURL(blob);
-				a.click();
-			}
+			window.vscode.postMessage({
+				command: "export",
+				filename: $("#node_text1").text(),
+				type: type,
+				content,
+			});
 		});
 	});
 

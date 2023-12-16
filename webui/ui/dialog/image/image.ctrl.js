@@ -13,7 +13,7 @@ angular.module("kityminderEditor").controller("image.ctrl", [
 			list: [],
 			url: image.url || "",
 			title: image.title || "",
-			R_URL: /^(http|https|data)?\:\w+/,
+			R_URL: /^(http|https|data)?\:/,
 		};
 
 		setTimeout(function () {
@@ -76,17 +76,14 @@ angular.module("kityminderEditor").controller("image.ctrl", [
 						var resp = json.data;
 						if (resp.errno == 0) {
 							$scope.data.url = resp.data.url;
-							$modalInstance.close({
-								url: $scope.data.url,
-								title: $scope.data.title,
-							});
+							$scope.$apply();
 						}
 					});
 				} else {
-					var reader=new FileReader();
-					reader.onload = function() {
-					    $scope.data.url = this.result;
-					    $scope.$apply();
+					var reader = new FileReader();
+					reader.onload = function () {
+						$scope.data.url = this.result;
+						$scope.$apply();
 					};
 					reader.readAsDataURL(file);
 				}
@@ -97,7 +94,6 @@ angular.module("kityminderEditor").controller("image.ctrl", [
 
 		$scope.shortCut = function (e) {
 			e.stopPropagation();
-
 			if (e.keyCode == 13) {
 				$scope.ok();
 			} else if (e.keyCode == 27) {
@@ -113,7 +109,6 @@ angular.module("kityminderEditor").controller("image.ctrl", [
 				});
 			} else {
 				$scope.urlPassed = false;
-
 				var $imageUrl = $("#image-url");
 				if ($imageUrl) {
 					$imageUrl.focus();

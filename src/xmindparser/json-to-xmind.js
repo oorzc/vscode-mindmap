@@ -79,7 +79,7 @@ class parser extends utils {
 			// 将 base64 字符串转换为字节数组
 			const byteArray = base64.toByteArray(base64Data);
 			// 创建 Buffer 对象
-			const buffer = Buffer.from(byteArray);
+			const buffer = Buffer.from(byteArray, "utf-8");
 			resolve(buffer);
 		});
 	}

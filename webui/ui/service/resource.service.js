@@ -35,7 +35,6 @@ angular.module('kityminderEditor')
         }
 
         openScope.$apply(function() {
-            console.log('to close the resourcelist');
             openScope.resourceListOpen = false;
         });
     };

@@ -6,12 +6,15 @@ src/**
 types/**
 config
 
+node_modules
+
 .gitignore
 tsconfig.json
 vsc-extension-quickstart.md
 tslint.json
 mindmap-*.vsix
 testDir/**
+install-*.js
 
 webui/node_modules/**
 webui/bower_components/**
@@ -30,7 +33,10 @@ webui/yarn.lock
 webui/.babelrc
 webui/.bowerrc
 webui/.jscsrc
+
+
 !webui/main.js
+!webui/resvg-js/*
 !webui/node_modules/kityminder-core/dist/kityminder.core.css
 !webui/node_modules/kityminder-core/dist/kityminder.core.min.js
 !webui/bower_components/bootstrap/dist/css/bootstrap.css

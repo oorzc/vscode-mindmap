@@ -1,5 +1,5 @@
-<uib-tabset>
-    <uib-tab active="true" heading="{{ 'idea' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab('idea')" select="setCurTab('idea')">
+<tabset>
+    <tab active="true" heading="{{ 'idea' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab($event)" select="setCurTab('idea')">
         <undo-redo editor="editor"></undo-redo>
         <append-node minder="minder"></append-node>
         <arrange minder="minder"></arrange>
@@ -10,21 +10,21 @@
         <priority-editor minder="minder"></priority-editor>
         <progress-editor minder="minder"></progress-editor>
         <resource-editor minder="minder"></resource-editor>
-    </uib-tab>
-    <uib-tab heading="{{ 'appearence' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab('appearance')" select="setCurTab('appearance')">
+    </tab>
+    <tab heading="{{ 'appearence' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab($event)" select="setCurTab('appearance')">
         <template-list minder="minder" class="inline-directive"></template-list>
         <theme-list minder="minder"></theme-list>
         <layout minder="minder" class="inline-directive"></layout>
         <style-operator minder="minder" class="inline-directive"></style-operator>
         <font-operator minder="minder" class="inline-directive"></font-operator>
-    </uib-tab>
-    <uib-tab heading="{{ 'view' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab('view')" select="setCurTab('view')">
+    </tab>
+    <tab heading="{{ 'view' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab($event)" select="setCurTab('view')">
         <expand-level minder="minder"></expand-level>
         <select-all minder="minder"></select-all>
         <search-btn minder="minder"></search-btn>
-    </uib-tab>
-	<uib-tab heading="{{ 'export&import' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab('export&import')"
+    </tab>
+	<tab heading="{{ 'export&import' | lang: 'ui/tabs'; }}" ng-click="toggleTopTab($event)"
     select="setCurTab('export&import')">
     <export-more minder="minder"></export-more>
-  </uib-tab>
-</uib-tabset>
+  </tab>
+</tabset>
