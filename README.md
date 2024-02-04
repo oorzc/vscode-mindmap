@@ -3,6 +3,10 @@
 [中文文档](https://github.com/oorzc/vscode-mindmap/blob/main/README.zh-CN.md)
 [Download Link](https://marketplace.visualstudio.com/items?itemName=oorzc.mind-map)
 
+##  ❓How to use
+
+Just create a file with the suffix xm or xmind directly.
+
 ## ✨ Plugin Features
 
 1. Multilingual support(简体中文,繁體中文,English,German,Spanish,French,Italian,Czech,Hungarian,Japanese,Korean,Polish,Portuguese,Russia)

@@ -2,6 +2,10 @@
 
 [下载地址](https://marketplace.visualstudio.com/items?itemName=oorzc.mind-map)
 
+##  ❓使用方法
+
+直接创建后缀为xm或者xmind的文件即可
+
 ## ✨ 插件功能
 
 1. 支持多国语言(简体中文,繁體中文,English,German,Spanish,French,Italian,Czech,Hungarian,Japanese,Korean,Polish,Portuguese,Russia)
