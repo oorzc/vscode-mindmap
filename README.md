@@ -5,7 +5,7 @@
 
 ##  ❓How to use
 
-Just create a file with the suffix xm or xmind directly.
+Just create a file with the suffix km or xmind directly.
 
 ## ✨ Plugin Features
 

@@ -7,3 +7,5 @@ webui/bower_components
 testDir
 *.vsix
 types
+
+sync_config.jsonc
