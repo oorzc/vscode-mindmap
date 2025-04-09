@@ -3,7 +3,7 @@
     "displayName": "vscode mindmap",
     "icon": "resources/icon.png",
     "description": "mindmap for vscode",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "publisher": "oorzc",
     "repository": {
         "type": "git",

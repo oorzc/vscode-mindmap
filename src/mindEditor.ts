@@ -62,7 +62,6 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
 
 		const onDiskPath = vscode.Uri.file(path.join(this.context.extensionPath, 'webui', 'mindmap.html'));
 		const resourcePath = vscode.Uri.file(path.join(this.context.extensionPath, 'webui'));
-
 		const resourceRealPath = webviewPanel.webview.asWebviewUri(resourcePath);
 		const fileContent =
 			process.platform === 'win32'
@@ -89,7 +88,6 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
 		panel.webview.options = {
 			enableScripts: true,
 		};
-
 		panel.webview.html = html;
 		panel.webview.onDidReceiveMessage(
 			async (message: any) => {
