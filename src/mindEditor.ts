@@ -24,6 +24,7 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
 			webviewOptions: {
 				retainContextWhenHidden: true,
 			},
+			supportsMultipleEditorsPerDocument: false,
 		});
 		return providerRegistration;
 	}
@@ -68,7 +69,11 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
 				? fs.readFileSync(onDiskPath.path.slice(1)).toString()
 				: fs.readFileSync(onDiskPath.path).toString();
 
-		let html = fileContent.replace(/\$\{vscode\}/g, resourceRealPath.toString());
+		// 生成 CSP meta 标签
+		const cspSource = webviewPanel.webview.cspSource;
+		const csp = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${cspSource} https: data: blob:; script-src ${cspSource} 'unsafe-inline' 'unsafe-eval'; style-src ${cspSource} 'unsafe-inline'; font-src ${cspSource} data:; connect-src ${cspSource} https:; worker-src blob:;" />`;
+
+		let html = fileContent.replace(/\$\{vscode\}/g, resourceRealPath.toString()).replace(/\$\{csp\}/g, csp);
 
 		let mindmapConfig: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration("MindMap")
 		const uploadUrl = mindmapConfig.get<string>('uploadUrl', '');
@@ -87,6 +92,7 @@ export class MindEditorProvider implements vscode.CustomEditorProvider {
 		const panel = webviewPanel;
 		panel.webview.options = {
 			enableScripts: true,
+			localResourceRoots: [vscode.Uri.file(path.join(this.context.extensionPath, 'webui'))],
 		};
 		panel.webview.html = html;
 		panel.webview.onDidReceiveMessage(
