@@ -4,7 +4,7 @@
     "icon": "resources/icon.png",
     "description": "mindmap for vscode",
     "version": "1.0.6",
-    "publisher": "oorzc",
+    "publisher": "oorzcc",
     "repository": {
         "type": "git",
         "url": "https://github.com/oorzc/vscode-mindmap.git"
